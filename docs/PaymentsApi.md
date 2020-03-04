@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_payment
 
-> crate::models::ItemResultPaymentV1 get_payment(account_id, payment_id, customer_id)
+> crate::models::ItemResultPaymentV1 get_payment(customer_id, account_id, payment_id)
 Read a payment.
 
 ### Parameters
@@ -19,9 +19,9 @@ Read a payment.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **account_id** | **String** | The accountId of the account. | [required] |
 **payment_id** | **String** | The paymentId of the payment. | [required] |
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
 
 ### Return type
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_payments
 
-> crate::models::ListResultPaymentV1 list_payments(account_id, customer_id, index, length)
+> crate::models::ListResultPaymentV1 list_payments(customer_id, account_id, index, length)
 List the payments. These payments are awaiting processing. Payments are processed on the due date.
 
 ### Parameters
@@ -49,8 +49,8 @@ List the payments. These payments are awaiting processing. Payments are processe
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **account_id** | **String** | The accountId of the account. | [required] |
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
 **index** | Option<**i32**> | Optional. Return items with this index or greater. |  |
 **length** | Option<**i32**> | Optional. Return items up to this number. |  |
 

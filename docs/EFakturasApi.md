@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## get_e_faktura
 
-> crate::models::ItemResultEFakturaV1 get_e_faktura(e_faktura_id, customer_id)
+> crate::models::ItemResultEFakturaV1 get_e_faktura(customer_id, e_faktura_id)
 Read an eFaktura.
 
 ### Parameters
@@ -21,8 +21,8 @@ Read an eFaktura.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **e_faktura_id** | **String** | The eFakturaId. | [required] |
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
 
 ### Return type
 
@@ -50,7 +50,7 @@ List eFakturas.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **status** | Option<**String**> | Optional. Filter the result to include items with this status: . Default value is ALL. |  |
 **start_date** | Option<**String**> | Optional. Filter the result to include items with due date on or after this date. Default value is 30 days before today's date. |  |
 **end_date** | Option<**String**> | Optional. Filter the result to include items with due date on or before this date. Default value is today's date. |  |
@@ -83,7 +83,7 @@ List eFakturas that have not yet been processed by the customer. These are consi
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **index** | Option<**i32**> | Optional. Return items with this index or greater. |  |
 **length** | Option<**i32**> | Optional. Return items up to this number. |  |
 
@@ -113,7 +113,7 @@ Pay an eFaktura.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **e_faktura_pay_request_v1** | Option<[**EFakturaPayRequestV1**](EFakturaPayRequestV1.md)> | The eFaktura payment details. |  |
 
 ### Return type

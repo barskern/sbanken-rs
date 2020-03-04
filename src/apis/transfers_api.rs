@@ -32,12 +32,12 @@ impl TransfersApiClient {
 
 #[async_trait]
 pub trait TransfersApi {
-    async fn transfer(&self, customer_id: Option<&str>, transfer_create_request_v1: Option<crate::models::TransferCreateRequestV1>) -> Result<crate::models::NoResult, Error>;
+    async fn transfer(&self, customer_id: &str, transfer_create_request_v1: Option<crate::models::TransferCreateRequestV1>) -> Result<crate::models::NoResult, Error>;
 }
 
 #[async_trait]
 impl TransfersApi for TransfersApiClient {
-    async fn transfer(&self, customer_id: Option<&str>, transfer_create_request_v1: Option<crate::models::TransferCreateRequestV1>) -> Result<crate::models::NoResult, Error> {
+    async fn transfer(&self, customer_id: &str, transfer_create_request_v1: Option<crate::models::TransferCreateRequestV1>) -> Result<crate::models::NoResult, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -47,9 +47,7 @@ impl TransfersApi for TransfersApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

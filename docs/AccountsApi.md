@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_account
 
-> crate::models::ItemResultAccountV1 get_account(account_id, customer_id)
+> crate::models::ItemResultAccountV1 get_account(customer_id, account_id)
 Reads an account
 
 ### Parameters
@@ -19,8 +19,8 @@ Reads an account
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **account_id** | **String** | The accountId of the account. | [required] |
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
 
 ### Return type
 
@@ -48,7 +48,7 @@ Lists the accounts.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
+**customer_id** | **String** | The customerId of the customer. | [required] |
 
 ### Return type
 

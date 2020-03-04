@@ -18,7 +18,7 @@ Lists the cards.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
+**customer_id** | **String** | The customerId of the customer. | [required] |
 
 ### Return type
 

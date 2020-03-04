@@ -32,13 +32,13 @@ impl AccountsApiClient {
 
 #[async_trait]
 pub trait AccountsApi {
-    async fn get_account(&self, account_id: &str, customer_id: Option<&str>) -> Result<crate::models::ItemResultAccountV1, Error>;
-    async fn list_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultAccountV1, Error>;
+    async fn get_account(&self, customer_id: &str, account_id: &str) -> Result<crate::models::ItemResultAccountV1, Error>;
+    async fn list_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultAccountV1, Error>;
 }
 
 #[async_trait]
 impl AccountsApi for AccountsApiClient {
-    async fn get_account(&self, account_id: &str, customer_id: Option<&str>) -> Result<crate::models::ItemResultAccountV1, Error> {
+    async fn get_account(&self, customer_id: &str, account_id: &str) -> Result<crate::models::ItemResultAccountV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -48,9 +48,7 @@ impl AccountsApi for AccountsApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };
@@ -61,7 +59,7 @@ impl AccountsApi for AccountsApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn list_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultAccountV1, Error> {
+    async fn list_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultAccountV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -71,9 +69,7 @@ impl AccountsApi for AccountsApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

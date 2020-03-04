@@ -32,12 +32,12 @@ impl StandingOrdersApiClient {
 
 #[async_trait]
 pub trait StandingOrdersApi {
-    async fn list_standing_orders(&self, account_id: &str, customer_id: Option<&str>) -> Result<crate::models::ListResultStandingOrderV1, Error>;
+    async fn list_standing_orders(&self, customer_id: &str, account_id: &str) -> Result<crate::models::ListResultStandingOrderV1, Error>;
 }
 
 #[async_trait]
 impl StandingOrdersApi for StandingOrdersApiClient {
-    async fn list_standing_orders(&self, account_id: &str, customer_id: Option<&str>) -> Result<crate::models::ListResultStandingOrderV1, Error> {
+    async fn list_standing_orders(&self, customer_id: &str, account_id: &str) -> Result<crate::models::ListResultStandingOrderV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -47,9 +47,7 @@ impl StandingOrdersApi for StandingOrdersApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

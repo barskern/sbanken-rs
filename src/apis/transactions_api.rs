@@ -32,12 +32,12 @@ impl TransactionsApiClient {
 
 #[async_trait]
 pub trait TransactionsApi {
-    async fn get_transactions(&self, account_id: &str, customer_id: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultTransactionV1, Error>;
+    async fn get_transactions(&self, customer_id: &str, account_id: &str, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultTransactionV1, Error>;
 }
 
 #[async_trait]
 impl TransactionsApi for TransactionsApiClient {
-    async fn get_transactions(&self, account_id: &str, customer_id: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultTransactionV1, Error> {
+    async fn get_transactions(&self, customer_id: &str, account_id: &str, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultTransactionV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -59,9 +59,7 @@ impl TransactionsApi for TransactionsApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

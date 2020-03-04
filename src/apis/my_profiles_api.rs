@@ -32,26 +32,24 @@ impl MyProfilesApiClient {
 
 #[async_trait]
 pub trait MyProfilesApi {
-    async fn get_contact_info(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultCustomerV1, Error>;
-    async fn get_investment_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultInvestmentAccountItemV1, Error>;
-    async fn get_loans(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultLoanAccountV1, Error>;
-    async fn get_profile(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultMyProfileV1, Error>;
-    async fn get_profile_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultAccountV1, Error>;
-    async fn update_profile(&self, customer_id: Option<&str>, relationship_status: Option<crate::models::RelationshipStatusV1>, home_type: Option<crate::models::HomeTypeV1>, highest_complete_education: Option<crate::models::EducationLevelV1>, work_status: Option<&str>, main_employer: Option<&str>, has_children: Option<bool>, number_of_children_below18_at_home: Option<i32>, monthly_child_support_expenses: Option<i32>, monthly_child_care_expenses: Option<i32>, years_in_current_position: Option<i32>, salary_frequency: Option<crate::models::SalaryFrequencyV1>, monthly_rent: Option<i32>, monthly_rental_revenues: Option<i32>, yearly_income: Option<i32>, salary_date: Option<i32>, is_car_owner: Option<bool>) -> Result<crate::models::NoResult, Error>;
+    async fn get_contact_info(&self, customer_id: &str) -> Result<crate::models::ItemResultCustomerV1, Error>;
+    async fn get_investment_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultInvestmentAccountItemV1, Error>;
+    async fn get_loans(&self, customer_id: &str) -> Result<crate::models::ListResultLoanAccountV1, Error>;
+    async fn get_profile(&self, customer_id: &str) -> Result<crate::models::ItemResultMyProfileV1, Error>;
+    async fn get_profile_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultAccountV1, Error>;
+    async fn update_profile(&self, customer_id: &str, relationship_status: Option<crate::models::RelationshipStatusV1>, home_type: Option<crate::models::HomeTypeV1>, highest_complete_education: Option<crate::models::EducationLevelV1>, work_status: Option<&str>, main_employer: Option<&str>, has_children: Option<bool>, number_of_children_below18_at_home: Option<i32>, monthly_child_support_expenses: Option<i32>, monthly_child_care_expenses: Option<i32>, years_in_current_position: Option<i32>, salary_frequency: Option<crate::models::SalaryFrequencyV1>, monthly_rent: Option<i32>, monthly_rental_revenues: Option<i32>, yearly_income: Option<i32>, salary_date: Option<i32>, is_car_owner: Option<bool>) -> Result<crate::models::NoResult, Error>;
 }
 
 #[async_trait]
 impl MyProfilesApi for MyProfilesApiClient {
-    async fn get_contact_info(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultCustomerV1, Error> {
+    async fn get_contact_info(&self, customer_id: &str) -> Result<crate::models::ItemResultCustomerV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/contactinformation", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::GET, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
@@ -65,16 +63,14 @@ impl MyProfilesApi for MyProfilesApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn get_investment_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultInvestmentAccountItemV1, Error> {
+    async fn get_investment_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultInvestmentAccountItemV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/investmentaccounts", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::GET, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
@@ -88,16 +84,14 @@ impl MyProfilesApi for MyProfilesApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn get_loans(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultLoanAccountV1, Error> {
+    async fn get_loans(&self, customer_id: &str) -> Result<crate::models::ListResultLoanAccountV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/loans", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::GET, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
@@ -111,16 +105,14 @@ impl MyProfilesApi for MyProfilesApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn get_profile(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultMyProfileV1, Error> {
+    async fn get_profile(&self, customer_id: &str) -> Result<crate::models::ItemResultMyProfileV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/profile", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::GET, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
@@ -134,16 +126,14 @@ impl MyProfilesApi for MyProfilesApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn get_profile_accounts(&self, customer_id: Option<&str>) -> Result<crate::models::ListResultAccountV1, Error> {
+    async fn get_profile_accounts(&self, customer_id: &str) -> Result<crate::models::ListResultAccountV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/accounts", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::GET, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
@@ -157,16 +147,14 @@ impl MyProfilesApi for MyProfilesApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn update_profile(&self, customer_id: Option<&str>, relationship_status: Option<crate::models::RelationshipStatusV1>, home_type: Option<crate::models::HomeTypeV1>, highest_complete_education: Option<crate::models::EducationLevelV1>, work_status: Option<&str>, main_employer: Option<&str>, has_children: Option<bool>, number_of_children_below18_at_home: Option<i32>, monthly_child_support_expenses: Option<i32>, monthly_child_care_expenses: Option<i32>, years_in_current_position: Option<i32>, salary_frequency: Option<crate::models::SalaryFrequencyV1>, monthly_rent: Option<i32>, monthly_rental_revenues: Option<i32>, yearly_income: Option<i32>, salary_date: Option<i32>, is_car_owner: Option<bool>) -> Result<crate::models::NoResult, Error> {
+    async fn update_profile(&self, customer_id: &str, relationship_status: Option<crate::models::RelationshipStatusV1>, home_type: Option<crate::models::HomeTypeV1>, highest_complete_education: Option<crate::models::EducationLevelV1>, work_status: Option<&str>, main_employer: Option<&str>, has_children: Option<bool>, number_of_children_below18_at_home: Option<i32>, monthly_child_support_expenses: Option<i32>, monthly_child_care_expenses: Option<i32>, years_in_current_position: Option<i32>, salary_frequency: Option<crate::models::SalaryFrequencyV1>, monthly_rent: Option<i32>, monthly_rental_revenues: Option<i32>, yearly_income: Option<i32>, salary_date: Option<i32>, is_car_owner: Option<bool>) -> Result<crate::models::NoResult, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
         let uri_str = format!("{}/exec.customers/api/v1/MyProfiles/profile", configuration.base_path);
         let mut req_builder = client.request(::reqwest::Method::POST, uri_str.as_str());
 
-        if let Some(ref s) = customer_id {
-            req_builder = req_builder.query(&[("customerId", &s.to_string())]);
-        }
+        req_builder = req_builder.query(&[("customerId", &customer_id.to_string())]);
         if let Some(ref s) = relationship_status {
             req_builder = req_builder.query(&[("RelationshipStatus", &s.to_string())]);
         }

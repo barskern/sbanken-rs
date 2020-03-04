@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 

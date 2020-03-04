@@ -32,15 +32,15 @@ impl EFakturasApiClient {
 
 #[async_trait]
 pub trait EFakturasApi {
-    async fn get_e_faktura(&self, e_faktura_id: &str, customer_id: Option<&str>) -> Result<crate::models::ItemResultEFakturaV1, Error>;
-    async fn list_e_fakturas(&self, customer_id: Option<&str>, status: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaV1, Error>;
-    async fn list_new_e_fakturas(&self, customer_id: Option<&str>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaSimpleV1, Error>;
-    async fn pay_e_faktura(&self, customer_id: Option<&str>, e_faktura_pay_request_v1: Option<crate::models::EFakturaPayRequestV1>) -> Result<crate::models::NoResult, Error>;
+    async fn get_e_faktura(&self, customer_id: &str, e_faktura_id: &str) -> Result<crate::models::ItemResultEFakturaV1, Error>;
+    async fn list_e_fakturas(&self, customer_id: &str, status: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaV1, Error>;
+    async fn list_new_e_fakturas(&self, customer_id: &str, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaSimpleV1, Error>;
+    async fn pay_e_faktura(&self, customer_id: &str, e_faktura_pay_request_v1: Option<crate::models::EFakturaPayRequestV1>) -> Result<crate::models::NoResult, Error>;
 }
 
 #[async_trait]
 impl EFakturasApi for EFakturasApiClient {
-    async fn get_e_faktura(&self, e_faktura_id: &str, customer_id: Option<&str>) -> Result<crate::models::ItemResultEFakturaV1, Error> {
+    async fn get_e_faktura(&self, customer_id: &str, e_faktura_id: &str) -> Result<crate::models::ItemResultEFakturaV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -50,9 +50,7 @@ impl EFakturasApi for EFakturasApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };
@@ -63,7 +61,7 @@ impl EFakturasApi for EFakturasApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn list_e_fakturas(&self, customer_id: Option<&str>, status: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaV1, Error> {
+    async fn list_e_fakturas(&self, customer_id: &str, status: Option<&str>, start_date: Option<String>, end_date: Option<String>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -88,9 +86,7 @@ impl EFakturasApi for EFakturasApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };
@@ -101,7 +97,7 @@ impl EFakturasApi for EFakturasApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn list_new_e_fakturas(&self, customer_id: Option<&str>, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaSimpleV1, Error> {
+    async fn list_new_e_fakturas(&self, customer_id: &str, index: Option<i32>, length: Option<i32>) -> Result<crate::models::ListResultEFakturaSimpleV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -117,9 +113,7 @@ impl EFakturasApi for EFakturasApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };
@@ -130,7 +124,7 @@ impl EFakturasApi for EFakturasApiClient {
         Ok(client.execute(req).await?.error_for_status()?.json().await?)
     }
 
-    async fn pay_e_faktura(&self, customer_id: Option<&str>, e_faktura_pay_request_v1: Option<crate::models::EFakturaPayRequestV1>) -> Result<crate::models::NoResult, Error> {
+    async fn pay_e_faktura(&self, customer_id: &str, e_faktura_pay_request_v1: Option<crate::models::EFakturaPayRequestV1>) -> Result<crate::models::NoResult, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -140,9 +134,7 @@ impl EFakturasApi for EFakturasApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

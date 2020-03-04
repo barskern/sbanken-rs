@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 
@@ -51,7 +51,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 
 ### Return type
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | Option<**String**> |  |  |
+**customer_id** | **String** |  | [required] |
 **relationship_status** | Option<[**crate::models::RelationshipStatusV1**](.md)> |  |  |
 **home_type** | Option<[**crate::models::HomeTypeV1**](.md)> |  |  |
 **highest_complete_education** | Option<[**crate::models::EducationLevelV1**](.md)> |  |  |

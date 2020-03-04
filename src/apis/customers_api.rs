@@ -32,12 +32,12 @@ impl CustomersApiClient {
 
 #[async_trait]
 pub trait CustomersApi {
-    async fn get_customer_info(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultCustomerV1, Error>;
+    async fn get_customer_info(&self, customer_id: &str) -> Result<crate::models::ItemResultCustomerV1, Error>;
 }
 
 #[async_trait]
 impl CustomersApi for CustomersApiClient {
-    async fn get_customer_info(&self, customer_id: Option<&str>) -> Result<crate::models::ItemResultCustomerV1, Error> {
+    async fn get_customer_info(&self, customer_id: &str) -> Result<crate::models::ItemResultCustomerV1, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
         let client = &configuration.client;
 
@@ -47,9 +47,7 @@ impl CustomersApi for CustomersApiClient {
         if let Some(ref user_agent) = configuration.user_agent {
             req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
         }
-        if let Some(param_value) = customer_id {
-            req_builder = req_builder.header("customerId", param_value.to_string());
-        }
+        req_builder = req_builder.header("customerId", customer_id.to_string());
         if let Some(ref token) = configuration.oauth_access_token {
             req_builder = req_builder.bearer_auth(token.to_owned());
         };

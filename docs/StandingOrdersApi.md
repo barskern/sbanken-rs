@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## list_standing_orders
 
-> crate::models::ListResultStandingOrderV1 list_standing_orders(account_id, customer_id)
+> crate::models::ListResultStandingOrderV1 list_standing_orders(customer_id, account_id)
 Lists the standing orders for repeated transfers and payments.
 
 ### Parameters
@@ -18,8 +18,8 @@ Lists the standing orders for repeated transfers and payments.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**customer_id** | **String** | The customerId of the customer. | [required] |
 **account_id** | **String** | The accountId of the account. | [required] |
-**customer_id** | Option<**String**> | The customerId of the customer. |  |
 
 ### Return type
 
