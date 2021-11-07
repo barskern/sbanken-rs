@@ -1,32 +1,29 @@
 # \CustomersApi
 
-All URIs are relative to *https://api.sbanken.no*
+All URIs are relative to *https://https://publicapi.sbanken.no/apibeta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_customer_info**](CustomersApi.md#get_customer_info) | **GET** /exec.customers/api/v1/Customers | 
+[**customers_read**](CustomersApi.md#customers_read) | **GET** /api/v2/Customers | Get customer data
 
 
 
-## get_customer_info
+## customers_read
 
-> crate::models::ItemResultCustomerV1 get_customer_info(customer_id)
-
+> crate::models::Customer customers_read()
+Get customer data
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | **String** |  | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ItemResultCustomerV1**](ItemResult.Customer.v1.md)
+[**crate::models::Customer**](Customer.md)
 
 ### Authorization
 
-[sbanken](../README.md#sbanken)
+No authorization required
 
 ### HTTP request headers
 

@@ -1,35 +1,35 @@
 # \PaymentsApi
 
-All URIs are relative to *https://api.sbanken.no*
+All URIs are relative to *https://https://publicapi.sbanken.no/apibeta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_payment**](PaymentsApi.md#get_payment) | **GET** /exec.bank/api/v1/Payments/{accountId}/{paymentId} | Read a payment.
-[**list_payments**](PaymentsApi.md#list_payments) | **GET** /exec.bank/api/v1/Payments/{accountId} | List the payments. These payments are awaiting processing. Payments are processed on the due date.
+[**payments_list**](PaymentsApi.md#payments_list) | **GET** /api/v2/Payments/{accountId} | List the payments. These payments are awaiting processing. Payments are processed on the due date.
+[**payments_read**](PaymentsApi.md#payments_read) | **GET** /api/v2/Payments/{accountId}/{paymentId} | Read a payment.
 
 
 
-## get_payment
+## payments_list
 
-> crate::models::ItemResultPaymentV1 get_payment(customer_id, account_id, payment_id)
-Read a payment.
+> crate::models::ListResultOfPayment payments_list(account_id, index, length)
+List the payments. These payments are awaiting processing. Payments are processed on the due date.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | **String** | The customerId of the customer. | [required] |
-**account_id** | **String** | The accountId of the account. | [required] |
-**payment_id** | **String** | The paymentId of the payment. | [required] |
+**account_id** | Option<**String**> | The `accountId` of the account. The account must be one owned by the customer, or an account the customer has been granted access to. An account's `accountId` can be retrieved with the list or read operation on the Accounts service. | [required] |
+**index** | Option<**i32**> | *Optional*. Return items with this `index` or greater. Minimum value is `0`, which is the first item within the query time span. Default value is `0`. |  |
+**length** | Option<**i32**> | *Optional*. Return a number of items items up to this value. Minimum value is `1`, maximum value is `1000`. The default value is `100`. |  |
 
 ### Return type
 
-[**crate::models::ItemResultPaymentV1**](ItemResult.Payment.v1.md)
+[**crate::models::ListResultOfPayment**](ListResultOfPayment.md)
 
 ### Authorization
 
-[sbanken](../README.md#sbanken)
+No authorization required
 
 ### HTTP request headers
 
@@ -39,28 +39,26 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## list_payments
+## payments_read
 
-> crate::models::ListResultPaymentV1 list_payments(customer_id, account_id, index, length)
-List the payments. These payments are awaiting processing. Payments are processed on the due date.
+> crate::models::Payment payments_read(account_id, payment_id)
+Read a payment.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | **String** | The customerId of the customer. | [required] |
-**account_id** | **String** | The accountId of the account. | [required] |
-**index** | Option<**i32**> | Optional. Return items with this index or greater. |  |
-**length** | Option<**i32**> | Optional. Return items up to this number. |  |
+**account_id** | Option<**String**> | The `accountId` of the account. The account must be one owned by the customer, or an account the customer has been granted access to. An account's `accountId` can be retrieved with the list or read operation on the Accounts service. | [required] |
+**payment_id** | Option<**String**> | The `paymentId` of the payment. The `paymentId` can be retrieved with the list operation on this service. | [required] |
 
 ### Return type
 
-[**crate::models::ListResultPaymentV1**](ListResult.Payment.v1.md)
+[**crate::models::Payment**](Payment.md)
 
 ### Authorization
 
-[sbanken](../README.md#sbanken)
+No authorization required
 
 ### HTTP request headers
 

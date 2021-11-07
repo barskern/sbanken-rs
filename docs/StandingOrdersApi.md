@@ -1,16 +1,16 @@
 # \StandingOrdersApi
 
-All URIs are relative to *https://api.sbanken.no*
+All URIs are relative to *https://https://publicapi.sbanken.no/apibeta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_standing_orders**](StandingOrdersApi.md#list_standing_orders) | **GET** /exec.bank/api/v1/StandingOrders/{accountId} | Lists the standing orders for repeated transfers and payments.
+[**standing_orders_list_standing_orders**](StandingOrdersApi.md#standing_orders_list_standing_orders) | **GET** /api/v2/StandingOrders/{accountId} | Lists the standing orders for repeated transfers and payments.
 
 
 
-## list_standing_orders
+## standing_orders_list_standing_orders
 
-> crate::models::ListResultStandingOrderV1 list_standing_orders(customer_id, account_id)
+> crate::models::ListResultOfStandingOrder standing_orders_list_standing_orders(account_id)
 Lists the standing orders for repeated transfers and payments.
 
 ### Parameters
@@ -18,16 +18,15 @@ Lists the standing orders for repeated transfers and payments.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | **String** | The customerId of the customer. | [required] |
-**account_id** | **String** | The accountId of the account. | [required] |
+**account_id** | Option<**String**> | The `accountId` of the account. The account must be one owned by the customer, or an account the customer has been granted access to. An account's `accountId` can be retrieved with the list or read operation on the Accounts service. | [required] |
 
 ### Return type
 
-[**crate::models::ListResultStandingOrderV1**](ListResult.StandingOrder.v1.md)
+[**crate::models::ListResultOfStandingOrder**](ListResultOfStandingOrder.md)
 
 ### Authorization
 
-[sbanken](../README.md#sbanken)
+No authorization required
 
 ### HTTP request headers
 

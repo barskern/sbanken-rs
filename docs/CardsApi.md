@@ -1,32 +1,29 @@
 # \CardsApi
 
-All URIs are relative to *https://api.sbanken.no*
+All URIs are relative to *https://https://publicapi.sbanken.no/apibeta*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_cards**](CardsApi.md#list_cards) | **GET** /exec.bank/api/v1/Cards | Lists the cards.
+[**cards_list**](CardsApi.md#cards_list) | **GET** /api/v2/Cards | Lists the cards.
 
 
 
-## list_cards
+## cards_list
 
-> crate::models::ListResultCardV1 list_cards(customer_id)
+> crate::models::ListResultOfCard cards_list()
 Lists the cards.
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**customer_id** | **String** | The customerId of the customer. | [required] |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ListResultCardV1**](ListResult.Card.v1.md)
+[**crate::models::ListResultOfCard**](ListResultOfCard.md)
 
 ### Authorization
 
-[sbanken](../README.md#sbanken)
+No authorization required
 
 ### HTTP request headers
 
