@@ -3,6 +3,13 @@ name = "sbanken"
 version = "0.0.1-alpha.3"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
+description = "Rust API client for sbanken"
+license = "AGPL-3.0"
+documentation = "https://docs.rs/sbanken"
+repository = "https://github.com/barskern/sbanken-rs"
+readme = "README.md"
+keywords = ["sbanken", "economy", "client"]
+categories = ["api-bindings"]
 
 [dependencies]
 serde = "^1.0"
