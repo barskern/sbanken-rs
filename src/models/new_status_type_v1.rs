@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum NewStatusTypeV1 {
     #[serde(rename = "Stopped")]
     Stopped,
@@ -23,20 +21,15 @@ pub enum NewStatusTypeV1 {
 
 }
 
-impl std::string::ToString for NewStatusTypeV1 {
+impl ToString for NewStatusTypeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Stopped => "Stopped".to_string(),
-        
-            Self::Reactivated => "Reactivated".to_string(),
-        
-            Self::IgnoreLimit => "IgnoreLimit".to_string(),
-        
+            Self::Stopped => String::from("Stopped"),
+            Self::Reactivated => String::from("Reactivated"),
+            Self::IgnoreLimit => String::from("IgnoreLimit"),
         }
     }
 }
-
 
 
 

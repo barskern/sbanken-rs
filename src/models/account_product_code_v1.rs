@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AccountProductCodeV1 {
     #[serde(rename = "AieHighInterest")]
     AieHighInterest,
@@ -41,38 +39,24 @@ pub enum AccountProductCodeV1 {
 
 }
 
-impl std::string::ToString for AccountProductCodeV1 {
+impl ToString for AccountProductCodeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::AieHighInterest => "AieHighInterest".to_string(),
-        
-            Self::AieStandard => "AieStandard".to_string(),
-        
-            Self::AieMortgageCredit => "AieMortgageCredit".to_string(),
-        
-            Self::AieBsu => "AieBsu".to_string(),
-        
-            Self::Creditcard => "Creditcard".to_string(),
-        
-            Self::StockTradingWithoutCredit => "StockTradingWithoutCredit".to_string(),
-        
-            Self::StockTradingWithCredit => "StockTradingWithCredit".to_string(),
-        
-            Self::Mortgage => "Mortgage".to_string(),
-        
-            Self::CarLoan => "CarLoan".to_string(),
-        
-            Self::ConsumerLoan => "ConsumerLoan".to_string(),
-        
-            Self::DebtSecuritesLoan => "DebtSecuritesLoan".to_string(),
-        
-            Self::Undefined => "Undefined".to_string(),
-        
+            Self::AieHighInterest => String::from("AieHighInterest"),
+            Self::AieStandard => String::from("AieStandard"),
+            Self::AieMortgageCredit => String::from("AieMortgageCredit"),
+            Self::AieBsu => String::from("AieBsu"),
+            Self::Creditcard => String::from("Creditcard"),
+            Self::StockTradingWithoutCredit => String::from("StockTradingWithoutCredit"),
+            Self::StockTradingWithCredit => String::from("StockTradingWithCredit"),
+            Self::Mortgage => String::from("Mortgage"),
+            Self::CarLoan => String::from("CarLoan"),
+            Self::ConsumerLoan => String::from("ConsumerLoan"),
+            Self::DebtSecuritesLoan => String::from("DebtSecuritesLoan"),
+            Self::Undefined => String::from("Undefined"),
         }
     }
 }
-
 
 
 

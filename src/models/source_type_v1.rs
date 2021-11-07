@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SourceTypeV1 {
     #[serde(rename = "AccountStatement")]
     AccountStatement,
@@ -21,18 +19,14 @@ pub enum SourceTypeV1 {
 
 }
 
-impl std::string::ToString for SourceTypeV1 {
+impl ToString for SourceTypeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::AccountStatement => "AccountStatement".to_string(),
-        
-            Self::Archive => "Archive".to_string(),
-        
+            Self::AccountStatement => String::from("AccountStatement"),
+            Self::Archive => String::from("Archive"),
         }
     }
 }
-
 
 
 

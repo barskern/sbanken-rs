@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EducationLevelV1 {
     #[serde(rename = "ElementarySchool")]
     ElementarySchool,
@@ -27,24 +25,17 @@ pub enum EducationLevelV1 {
 
 }
 
-impl std::string::ToString for EducationLevelV1 {
+impl ToString for EducationLevelV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::ElementarySchool => "ElementarySchool".to_string(),
-        
-            Self::HighSchool => "HighSchool".to_string(),
-        
-            Self::HigherEducationUpTo3Years => "HigherEducationUpTo3Years".to_string(),
-        
-            Self::HigherEducation3To5Years => "HigherEducation3To5Years".to_string(),
-        
-            Self::HigherEducationMoreThan5Years => "HigherEducationMoreThan5Years".to_string(),
-        
+            Self::ElementarySchool => String::from("ElementarySchool"),
+            Self::HighSchool => String::from("HighSchool"),
+            Self::HigherEducationUpTo3Years => String::from("HigherEducationUpTo3Years"),
+            Self::HigherEducation3To5Years => String::from("HigherEducation3To5Years"),
+            Self::HigherEducationMoreThan5Years => String::from("HigherEducationMoreThan5Years"),
         }
     }
 }
-
 
 
 

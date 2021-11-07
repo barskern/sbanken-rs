@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct MyProfileV1 {
     #[serde(rename = "relationshipStatus", skip_serializing_if = "Option::is_none")]
     pub relationship_status: Option<crate::models::RelationshipStatusV1>,

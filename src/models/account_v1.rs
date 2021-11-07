@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AccountV1 {
     #[serde(rename = "accountId", skip_serializing_if = "Option::is_none")]
     pub account_id: Option<String>,

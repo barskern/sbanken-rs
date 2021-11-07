@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct EFakturaSimpleV1 {
     #[serde(rename = "eFakturaId", skip_serializing_if = "Option::is_none")]
     pub e_faktura_id: Option<String>,

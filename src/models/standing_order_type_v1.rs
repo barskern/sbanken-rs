@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StandingOrderTypeV1 {
     #[serde(rename = "Payment")]
     Payment,
@@ -23,20 +21,15 @@ pub enum StandingOrderTypeV1 {
 
 }
 
-impl std::string::ToString for StandingOrderTypeV1 {
+impl ToString for StandingOrderTypeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Payment => "Payment".to_string(),
-        
-            Self::Transfer => "Transfer".to_string(),
-        
-            Self::Other => "Other".to_string(),
-        
+            Self::Payment => String::from("Payment"),
+            Self::Transfer => String::from("Transfer"),
+            Self::Other => String::from("Other"),
         }
     }
 }
-
 
 
 

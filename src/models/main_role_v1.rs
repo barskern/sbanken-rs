@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum MainRoleV1 {
     #[serde(rename = "Owner")]
     Owner,
@@ -37,34 +35,22 @@ pub enum MainRoleV1 {
 
 }
 
-impl std::string::ToString for MainRoleV1 {
+impl ToString for MainRoleV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Owner => "Owner".to_string(),
-        
-            Self::Disposal => "Disposal".to_string(),
-        
-            Self::CoOwner => "CoOwner".to_string(),
-        
-            Self::CoDebtor => "CoDebtor".to_string(),
-        
-            Self::Collateral => "Collateral".to_string(),
-        
-            Self::Guardian => "Guardian".to_string(),
-        
-            Self::Access => "Access".to_string(),
-        
-            Self::Addressee => "Addressee".to_string(),
-        
-            Self::Guarantator => "Guarantator".to_string(),
-        
-            Self::Undefined => "Undefined".to_string(),
-        
+            Self::Owner => String::from("Owner"),
+            Self::Disposal => String::from("Disposal"),
+            Self::CoOwner => String::from("CoOwner"),
+            Self::CoDebtor => String::from("CoDebtor"),
+            Self::Collateral => String::from("Collateral"),
+            Self::Guardian => String::from("Guardian"),
+            Self::Access => String::from("Access"),
+            Self::Addressee => String::from("Addressee"),
+            Self::Guarantator => String::from("Guarantator"),
+            Self::Undefined => String::from("Undefined"),
         }
     }
 }
-
 
 
 

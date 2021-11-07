@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct LoanAccountV1 {
     #[serde(rename = "availableAmount", skip_serializing_if = "Option::is_none")]
     pub available_amount: Option<f64>,
@@ -38,7 +36,7 @@ pub struct LoanAccountV1 {
     #[serde(rename = "owner", skip_serializing_if = "Option::is_none")]
     pub owner: Option<String>,
     #[serde(rename = "accountProduct", skip_serializing_if = "Option::is_none")]
-    pub account_product: Option<crate::models::AccountProductV1>,
+    pub account_product: Option<Box<crate::models::AccountProductV1>>,
     #[serde(rename = "statusCode", skip_serializing_if = "Option::is_none")]
     pub status_code: Option<crate::models::AccountStatusCodeV1>,
     #[serde(rename = "title", skip_serializing_if = "Option::is_none")]

@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SalaryFrequencyV1 {
     #[serde(rename = "Monthly")]
     Monthly,
@@ -21,18 +19,14 @@ pub enum SalaryFrequencyV1 {
 
 }
 
-impl std::string::ToString for SalaryFrequencyV1 {
+impl ToString for SalaryFrequencyV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Monthly => "Monthly".to_string(),
-        
-            Self::BiWeekly => "BiWeekly".to_string(),
-        
+            Self::Monthly => String::from("Monthly"),
+            Self::BiWeekly => String::from("BiWeekly"),
         }
     }
 }
-
 
 
 

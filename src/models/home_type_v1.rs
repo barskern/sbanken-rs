@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum HomeTypeV1 {
     #[serde(rename = "SelfOwnership")]
     SelfOwnership,
@@ -25,22 +23,16 @@ pub enum HomeTypeV1 {
 
 }
 
-impl std::string::ToString for HomeTypeV1 {
+impl ToString for HomeTypeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::SelfOwnership => "SelfOwnership".to_string(),
-        
-            Self::HousingCooperative => "HousingCooperative".to_string(),
-        
-            Self::Renting => "Renting".to_string(),
-        
-            Self::AtParents => "AtParents".to_string(),
-        
+            Self::SelfOwnership => String::from("SelfOwnership"),
+            Self::HousingCooperative => String::from("HousingCooperative"),
+            Self::Renting => String::from("Renting"),
+            Self::AtParents => String::from("AtParents"),
         }
     }
 }
-
 
 
 

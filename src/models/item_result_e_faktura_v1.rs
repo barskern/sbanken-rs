@@ -9,14 +9,12 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ItemResultEFakturaV1 {
     #[serde(rename = "item", skip_serializing_if = "Option::is_none")]
-    pub item: Option<crate::models::EFakturaV1>,
+    pub item: Option<Box<crate::models::EFakturaV1>>,
     #[serde(rename = "errorType", skip_serializing_if = "Option::is_none")]
     pub error_type: Option<crate::models::ErrorType>,
     #[serde(rename = "isError", skip_serializing_if = "Option::is_none")]

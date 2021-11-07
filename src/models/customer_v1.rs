@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CustomerV1 {
     #[serde(rename = "customerId", skip_serializing_if = "Option::is_none")]
     pub customer_id: Option<String>,
@@ -26,9 +24,9 @@ pub struct CustomerV1 {
     #[serde(rename = "dateOfBirth", skip_serializing_if = "Option::is_none")]
     pub date_of_birth: Option<String>,
     #[serde(rename = "postalAddress", skip_serializing_if = "Option::is_none")]
-    pub postal_address: Option<crate::models::AddressV1>,
+    pub postal_address: Option<Box<crate::models::AddressV1>>,
     #[serde(rename = "streetAddress", skip_serializing_if = "Option::is_none")]
-    pub street_address: Option<crate::models::AddressV1>,
+    pub street_address: Option<Box<crate::models::AddressV1>>,
     #[serde(rename = "phoneNumbers", skip_serializing_if = "Option::is_none")]
     pub phone_numbers: Option<Vec<crate::models::PhoneNumberV1>>,
 }

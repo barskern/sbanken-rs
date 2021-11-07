@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PhoneNumberV1 {
     #[serde(rename = "countryCode", skip_serializing_if = "Option::is_none")]
     pub country_code: Option<String>,

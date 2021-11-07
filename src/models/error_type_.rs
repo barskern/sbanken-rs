@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ErrorType {
     #[serde(rename = "System")]
     System,
@@ -29,26 +27,18 @@ pub enum ErrorType {
 
 }
 
-impl std::string::ToString for ErrorType {
+impl ToString for ErrorType {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::System => "System".to_string(),
-        
-            Self::Input => "Input".to_string(),
-        
-            Self::State => "State".to_string(),
-        
-            Self::ServiceUnavailable => "ServiceUnavailable".to_string(),
-        
-            Self::CustomHttpStatus => "CustomHttpStatus".to_string(),
-        
-            Self::NotFound => "NotFound".to_string(),
-        
+            Self::System => String::from("System"),
+            Self::Input => String::from("Input"),
+            Self::State => String::from("State"),
+            Self::ServiceUnavailable => String::from("ServiceUnavailable"),
+            Self::CustomHttpStatus => String::from("CustomHttpStatus"),
+            Self::NotFound => String::from("NotFound"),
         }
     }
 }
-
 
 
 

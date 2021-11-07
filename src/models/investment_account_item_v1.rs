@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InvestmentAccountItemV1 {
     #[serde(rename = "accountType", skip_serializing_if = "Option::is_none")]
     pub account_type: Option<String>,

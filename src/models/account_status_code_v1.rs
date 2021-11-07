@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AccountStatusCodeV1 {
     #[serde(rename = "ActiveAccount")]
     ActiveAccount,
@@ -29,26 +27,18 @@ pub enum AccountStatusCodeV1 {
 
 }
 
-impl std::string::ToString for AccountStatusCodeV1 {
+impl ToString for AccountStatusCodeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::ActiveAccount => "ActiveAccount".to_string(),
-        
-            Self::Blocked => "Blocked".to_string(),
-        
-            Self::BlockedDeposit => "BlockedDeposit".to_string(),
-        
-            Self::BlockedWithdrawel => "BlockedWithdrawel".to_string(),
-        
-            Self::Closed => "Closed".to_string(),
-        
-            Self::Undefined => "Undefined".to_string(),
-        
+            Self::ActiveAccount => String::from("ActiveAccount"),
+            Self::Blocked => String::from("Blocked"),
+            Self::BlockedDeposit => String::from("BlockedDeposit"),
+            Self::BlockedWithdrawel => String::from("BlockedWithdrawel"),
+            Self::Closed => String::from("Closed"),
+            Self::Undefined => String::from("Undefined"),
         }
     }
 }
-
 
 
 

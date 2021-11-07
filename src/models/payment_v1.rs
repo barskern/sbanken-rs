@@ -9,11 +9,9 @@
  */
 
 
-use serde::{Deserialize, Serialize};
 
 
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PaymentV1 {
     #[serde(rename = "paymentId", skip_serializing_if = "Option::is_none")]
     pub payment_id: Option<String>,

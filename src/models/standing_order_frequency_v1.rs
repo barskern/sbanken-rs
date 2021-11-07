@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StandingOrderFrequencyV1 {
     #[serde(rename = "Other")]
     Other,
@@ -35,32 +33,21 @@ pub enum StandingOrderFrequencyV1 {
 
 }
 
-impl std::string::ToString for StandingOrderFrequencyV1 {
+impl ToString for StandingOrderFrequencyV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Other => "Other".to_string(),
-        
-            Self::Weekly => "Weekly".to_string(),
-        
-            Self::Biweekly => "Biweekly".to_string(),
-        
-            Self::Semimonthly => "Semimonthly".to_string(),
-        
-            Self::Monthly => "Monthly".to_string(),
-        
-            Self::Bimonthly => "Bimonthly".to_string(),
-        
-            Self::Quarterly => "Quarterly".to_string(),
-        
-            Self::Yearly => "Yearly".to_string(),
-        
-            Self::Daily => "Daily".to_string(),
-        
+            Self::Other => String::from("Other"),
+            Self::Weekly => String::from("Weekly"),
+            Self::Biweekly => String::from("Biweekly"),
+            Self::Semimonthly => String::from("Semimonthly"),
+            Self::Monthly => String::from("Monthly"),
+            Self::Bimonthly => String::from("Bimonthly"),
+            Self::Quarterly => String::from("Quarterly"),
+            Self::Yearly => String::from("Yearly"),
+            Self::Daily => String::from("Daily"),
         }
     }
 }
-
 
 
 

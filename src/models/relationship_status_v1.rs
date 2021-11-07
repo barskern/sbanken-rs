@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RelationshipStatusV1 {
     #[serde(rename = "Single")]
     Single,
@@ -27,24 +25,17 @@ pub enum RelationshipStatusV1 {
 
 }
 
-impl std::string::ToString for RelationshipStatusV1 {
+impl ToString for RelationshipStatusV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::Single => "Single".to_string(),
-        
-            Self::Married => "Married".to_string(),
-        
-            Self::CoHabitant => "CoHabitant".to_string(),
-        
-            Self::Separated => "Separated".to_string(),
-        
-            Self::Widow => "Widow".to_string(),
-        
+            Self::Single => String::from("Single"),
+            Self::Married => String::from("Married"),
+            Self::CoHabitant => String::from("CoHabitant"),
+            Self::Separated => String::from("Separated"),
+            Self::Widow => String::from("Widow"),
         }
     }
 }
-
 
 
 

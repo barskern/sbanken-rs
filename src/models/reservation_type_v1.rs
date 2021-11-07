@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ReservationTypeV1 {
     #[serde(rename = "NotReservation")]
     NotReservation,
@@ -25,22 +23,16 @@ pub enum ReservationTypeV1 {
 
 }
 
-impl std::string::ToString for ReservationTypeV1 {
+impl ToString for ReservationTypeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::NotReservation => "NotReservation".to_string(),
-        
-            Self::VisaReservation => "VisaReservation".to_string(),
-        
-            Self::PurchaseReservation => "PurchaseReservation".to_string(),
-        
-            Self::AtmReservation => "AtmReservation".to_string(),
-        
+            Self::NotReservation => String::from("NotReservation"),
+            Self::VisaReservation => String::from("VisaReservation"),
+            Self::PurchaseReservation => String::from("PurchaseReservation"),
+            Self::AtmReservation => String::from("AtmReservation"),
         }
     }
 }
-
 
 
 

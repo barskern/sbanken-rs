@@ -9,10 +9,8 @@
  */
 
 
-use serde::{Deserialize, Serialize};
-
 /// 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ProductCodeV1 {
     #[serde(rename = "DebitCard")]
     DebitCard,
@@ -39,36 +37,23 @@ pub enum ProductCodeV1 {
 
 }
 
-impl std::string::ToString for ProductCodeV1 {
+impl ToString for ProductCodeV1 {
     fn to_string(&self) -> String {
         match self {
-        
-            Self::DebitCard => "DebitCard".to_string(),
-        
-            Self::DebitCardCL => "DebitCardCL".to_string(),
-        
-            Self::CreditCard => "CreditCard".to_string(),
-        
-            Self::CreditCardCL => "CreditCardCL".to_string(),
-        
-            Self::DebitCardYouth => "DebitCardYouth".to_string(),
-        
-            Self::DebitCardYouthCL => "DebitCardYouthCL".to_string(),
-        
-            Self::X2XCard => "X2XCard".to_string(),
-        
-            Self::X2XCardChild => "X2XCardChild".to_string(),
-        
-            Self::X2XCardChildNet => "X2XCardChildNet".to_string(),
-        
-            Self::ElectronCard => "ElectronCard".to_string(),
-        
-            Self::Unknown => "Unknown".to_string(),
-        
+            Self::DebitCard => String::from("DebitCard"),
+            Self::DebitCardCL => String::from("DebitCardCL"),
+            Self::CreditCard => String::from("CreditCard"),
+            Self::CreditCardCL => String::from("CreditCardCL"),
+            Self::DebitCardYouth => String::from("DebitCardYouth"),
+            Self::DebitCardYouthCL => String::from("DebitCardYouthCL"),
+            Self::X2XCard => String::from("X2XCard"),
+            Self::X2XCardChild => String::from("X2XCardChild"),
+            Self::X2XCardChildNet => String::from("X2XCardChildNet"),
+            Self::ElectronCard => String::from("ElectronCard"),
+            Self::Unknown => String::from("Unknown"),
         }
     }
 }
-
 
 
 
